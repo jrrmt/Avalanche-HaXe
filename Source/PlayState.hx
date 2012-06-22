@@ -123,6 +123,9 @@ class PlayState extends FlxState
 		add(fences);
 		add(rocks);
 
+		//rocks.add();
+		new FlxSprite(-100, -100, "assets/rock.png" );
+
 		avalancheEmitter = new FlxEmitter(0,5, cast(particleLimit, Int));
 		for(i in 0...cast(avalancheEmitter.maxSize/4, Int)){
 			grayPixel = new SnowParticle();
@@ -338,10 +341,13 @@ class PlayState extends FlxState
 						rockStart = Math.round(FlxG.random()*192 + 16);
 					}while(rockStart > 224 - 16*s);
 
+					remove(player, true);
 					for(j in 0...s)
 					{
 						rocks.add(new FlxSprite(rockStart+16*j, player.y + obstacleInterval + offs, "assets/rock.png" ));
 					}
+
+					add(player);
 				}
 
 				nextInterval = 400;
