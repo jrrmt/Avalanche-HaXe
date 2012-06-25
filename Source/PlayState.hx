@@ -26,6 +26,7 @@ class PlayState extends FlxState
 {
 	private var bg1:FlxSprite;
 	private var bg2:FlxSprite;
+	private var bg3:FlxSprite;
 
 	private var player:FlxSprite;
 	private var obstacles:FlxGroup;
@@ -115,8 +116,11 @@ class PlayState extends FlxState
 
 		bg1 = new FlxSprite(0,0,"assets/bg.png");
 		bg2 = new FlxSprite(0,320, "assets/bg.png");
+		bg3 = new FlxSprite(0,640, "assets/bg.png");
+
 		this.add(bg1);
 		this.add(bg2);
+		this.add(bg3);
 
 		setupFences();
 		add(obstacles);
@@ -194,12 +198,14 @@ class PlayState extends FlxState
 
 	private function updateBg():Void
 	{
+		bg3.y -= ySpeed*FlxG.elapsed;
 		bg2.y -= ySpeed*FlxG.elapsed;
 		bg1.y -= ySpeed*FlxG.elapsed;
 
 		if(bg2.y <= 0){
 				bg1.y = bg2.y;
 				bg2.y += 320;
+				bg3.y += 320;
 		}
 
 		
