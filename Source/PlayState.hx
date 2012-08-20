@@ -41,7 +41,9 @@ class PlayState extends FlxState
 	private var winDistance:Float;
 
 	private var avalancheEmitter:FlxEmitter;
-	private var grayPixel:FlxParticle;
+	private var grayPixel1:FlxParticle;
+	private var grayPixel2:FlxParticle;
+	private var grayPixel3:FlxParticle;
 	public var avalancheEvolution:Float;
 	private var avalancheAccel:Float;
 
@@ -131,26 +133,47 @@ class PlayState extends FlxState
 		new FlxSprite(-100, -100, "assets/rock.png" );
 
 		avalancheEmitter = new FlxEmitter(0,5, cast(particleLimit, Int));
+		grayPixel1 = new SnowParticle();
+		grayPixel1.makeGraphic(32, 32, 0xFFEEEEEE);
+		grayPixel1.visible = false;
+		avalancheEmitter.add(grayPixel1);
+
+		grayPixel2 = new SnowParticle();
+		grayPixel2.makeGraphic(2, 2, 0xFF333333);
+		grayPixel2.visible = false;
+		avalancheEmitter.add(grayPixel2);
+
+		grayPixel3 = new SnowParticle();
+		grayPixel3.makeGraphic(32, 32, 0xFF666666);
+		grayPixel3.visible = false;
+		avalancheEmitter.add(grayPixel3);
+
+		var tmpPixel:SnowParticle;
+
 		for(i in 0...cast(avalancheEmitter.maxSize/4, Int)){
-			grayPixel = new SnowParticle();
-			grayPixel.makeGraphic(32, 32, 0xFFEEEEEE);
-			grayPixel.visible = false;
-			avalancheEmitter.add(grayPixel);
+			tmpPixel = new SnowParticle();
+			tmpPixel.makeGraphic(32, 32, 0xFFEEEEEE);
+			tmpPixel.visible = false;
+			tmpPixel.loadFrom(grayPixel1);
+			avalancheEmitter.add(tmpPixel);
 
-			grayPixel = new SnowParticle();
-			grayPixel.makeGraphic(32, 32, 0xFFEEEEEE);
-			grayPixel.visible = false;
-			avalancheEmitter.add(grayPixel);
+			tmpPixel = new SnowParticle();
+			tmpPixel.makeGraphic(32, 32, 0xFFEEEEEE);
+			tmpPixel.visible = false;
+			tmpPixel.loadFrom(grayPixel1);
+			avalancheEmitter.add(tmpPixel);
 
-			grayPixel = new SnowParticle();
-			grayPixel.makeGraphic(2, 2, 0xFF333333);
-			grayPixel.visible = false;
-			avalancheEmitter.add(grayPixel);
+			tmpPixel = new SnowParticle();
+			tmpPixel.makeGraphic(2, 2, 0xFF333333);
+			tmpPixel.visible = false;
+			tmpPixel.loadFrom(grayPixel2);
+			avalancheEmitter.add(tmpPixel);
 
-			grayPixel = new SnowParticle();
-			grayPixel.makeGraphic(32, 32, 0xFF666666);
-			grayPixel.visible = false;
-			avalancheEmitter.add(grayPixel);
+			tmpPixel = new SnowParticle();
+			tmpPixel.makeGraphic(32, 32, 0xFF666666);
+			tmpPixel.visible = false;
+			tmpPixel.loadFrom(grayPixel3);
+			avalancheEmitter.add(tmpPixel);
 		}
 		
 

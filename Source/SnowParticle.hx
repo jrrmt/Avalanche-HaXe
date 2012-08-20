@@ -2,6 +2,7 @@ package;
 
 import org.flixel.FlxG;
 import org.flixel.FlxParticle;
+import org.flixel.FlxSprite;
 
 class SnowParticle extends FlxParticle
 {
